@@ -1,0 +1,81 @@
+<?php
+include 'config.php';
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userID = $_SESSION['UserID'];
+    $services = $_POST['services'];
+    $totalAmount = 0;
+
+    // Calculate total amount
+    foreach ($services as $service) {
+        $serviceID = $service['serviceID'];
+        $quantity = $service['quantity'];
+        $price = $service['price'];
+        $totalAmount += $price * $quantity;
+    }
+
+    // Insert into Orders table
+    $sql = "INSERT INTO Orders (UserID, TotalAmount) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("id", $userID, $totalAmount);
+
+    if ($stmt->execute()) {
+        $orderID = $stmt->insert_id;
+
+        // Insert into OrderDetails table
+        foreach ($services as $service) {
+            $serviceID = $service['serviceID'];
+            $quantity = $service['quantity'];
+            $price = $service['price'];
+
+            $sql = "INSERT INTO OrderDetails (OrderID, ServiceID, Quantity, Price) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iiid", $orderID, $serviceID, $quantity, $price);
+            $stmt->execute();
+        }
+
+        echo "Order placed successfully!";
+        header('Location: payment.html');
+            exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order - Laundry Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Place an Order</h1>
+    <form action="place_order.php" method="post">
+        <div>
+            <label>Service 1 (Wash & Fold)</label>
+            <input type="number" name="services[0][quantity]" placeholder="Quantity" required>
+            <input type="hidden" name="services[0][serviceID]" value="1">
+            <input type="hidden" name="services[0][price]" value="10.00">
+        </div>
+        <div>
+            <label>Service 2 (Dry Cleaning)</label>
+            <input type="number" name="services[1][quantity]" placeholder="Quantity" required>
+            <input type="hidden" name="services[1][serviceID]" value="2">
+            <input type="hidden" name="services[1][price]" value="20.00">
+        </div>
+        <!-- Add more services as needed -->
+        <button type="submit">Place Order</button>
+    
+    </form>
+    <button type="submit"> <a href="home.html">BACK</a></button>
+</body>
+</html>

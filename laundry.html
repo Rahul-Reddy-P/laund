@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry Care Onboarding</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/kTc9e4uB4I1A5rDQeF76t91o/6b0Q8y5X+8+2D6WvUBFUgAHT8m0mD6zZ1LsoEYF5W1Eyq+4l5Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #00ADEF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .navbar {
+            background-color: #005F8C;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        .navbar input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .navbar .fa-search, .navbar .fa-microphone {
+            margin-left: 10px;
+            color: white;
+            cursor: pointer;
+        }
+        .content {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .carousel img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .actions {
+            flex: 1;
+            text-align: center;
+            color: white;
+        }
+        .actions h1 {
+            margin: 20px 0;
+        }
+        .actions button {
+            background-color: white;
+            color: #00ADEF;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .actions a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="carousel">
+            <img src="https://img.freepik.com/premium-photo/interior-laundry-room-with-washing-machine-bright-yellow-wall-background_566707-2239.jpg?w=900" alt="Washing Machine 1">
+            <img src="https://i.pinimg.com/736x/71/00/7d/71007dff8cbc6b9b0401a646f00c07f4.jpg" alt="2">
+        </div>
+        <div class="actions">
+            <h1>The best solution for cleaning clothes</h1>
+            <button onclick="location.href='login.html'">Login</button><br><br>
+            <button onclick="location.href='registration.html'">Signup</button>
+            <a href="home.html">Skip for now</a>
+        </div>
+    </div>
+    <script>
+        // Simple carousel functionality
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+        images[currentImageIndex].style.display = 'block';
+
+        setInterval(() => {
+            images[currentImageIndex].style.display = 'none';
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].style.display = 'block';
+        }, 3000); // Change image every 3 seconds
+    </script>
+</body>
+</html>

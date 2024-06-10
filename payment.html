@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Laundry Service</title>
+</head>
+<body>
+    <h1>Make a Payment</h1>
+    <link rel="stylesheet" href="styles.css">
+    <form method="post" action="process_payment.php">
+        <label for="order_id">Order ID:</label><br>
+        <input type="text" id="order_id" name="order_id" required><br><br>
+
+        <label for="card_number">Card Number:</label><br>
+        <input type="text" id="card_number" name="card_number" required><br><br>
+
+        <label for="expiry_date">Expiry Date (MM/YY):</label><br>
+        <input type="text" id="expiry_date" name="expiry_date" required><br><br>
+
+        <label for="cvv">CVV:</label><br>
+        <input type="text" id="cvv" name="cvv" required><br><br>
+
+        <button type="submit">Submit Payment</button>
+    </form>
+</body>
+</html>

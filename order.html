@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order - Laundry Service</title>
+</head>
+<body>
+    <h1>Place Your Laundry Order</h1>
+    <link rel="stylesheet" href="styles.css">
+    <form method="post" action="place_order.php">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+        <label for="order_details">Order Details:</label><br>
+        <textarea id="order_details" name="order_details" required></textarea><br><br>
+
+        <label for="latitude">Latitude:</label><br>
+        <input type="text" id="latitude" name="latitude" required><br><br>
+
+        <label for="longitude">Longitude:</label><br>
+        <input type="text" id="longitude" name="longitude" required><br><br>
+
+        <button type="submit">Submit Order</button>
+    </form>
+</body>
+</html>
